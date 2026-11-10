@@ -49,7 +49,7 @@ class MockLLM:
                     "gpa": float(gpa.group(1).replace(",", ".")) if gpa else None,
                     "evidence": line, "confidence": "high",
                 })
-            m = re.search(r"(\d{4}-\d{2})\s*[–-]\s*(\d{4}-\d{2}|present)", line)
+            m = re.search(r"(\d{4}-\d{2})\s*[\u2013\u2014-]\s*(\d{4}-\d{2}|present)", line)
             if m:
                 parts = [p.strip() for p in line.split("|")]
                 out["experience"].append({

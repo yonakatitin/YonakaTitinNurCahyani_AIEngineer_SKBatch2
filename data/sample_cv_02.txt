@@ -5,7 +5,7 @@ EDUCATION
 Example State University | B.Sc. Computer Science | Graduated 2024 | GPA 3.40
 
 EXPERIENCE
-Data Analyst Intern | Contoh Retail Co | 2024-02  2024-07
+Data Analyst Intern | Contoh Retail Co | 2024-02 - 2024-07
 Built an internal REST API with Python and FastAPI.
 
 PROJECTS

@@ -4,7 +4,7 @@ PENDIDIKAN
 Universitas Contoh Utara | S1 Sistem Informasi | Lulus 2025 | IPK 3,10
 
 PENGALAMAN
-Freelance Web Developer | Self-employed | 2024-01  2025-01
+Freelance Web Developer | Self-employed | 2024-01 - 2025-01
 Membuat REST API dengan Python dan FastAPI.
 
 KEAHLIAN
