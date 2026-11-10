@@ -76,15 +76,15 @@ class MockLLM:
         return out
 
 
-class RealLLM:
-    """Placeholder: sambungkan ke free tier provider pilihan.
-    Kirim EXTRACTION_PROMPT + <cv>...</cv>, temperature 0, minta JSON saja."""
-
-    def extract(self, cv_text: str) -> dict:
-        raise NotImplementedError("Isi dengan pemanggilan API free tier.")
-
-
 def get_llm(hallucinate: bool = False) -> LLM:
-    if os.getenv("LLM_MODE", "mock") == "real":
-        return RealLLM()
+    import sys
+    from .gemini_llm import _load_env
+    _load_env()  # baca .env sebelum menentukan mode (tidak menimpa env yang sudah di-set)
+    mode = os.getenv("LLM_MODE", "mock")
+    if mode == "real":
+        from .gemini_llm import RealLLM
+        llm = RealLLM()
+        print(f"[llm] mode=real model={llm.model}", file=sys.stderr)
+        return llm
+    print("[llm] mode=mock", file=sys.stderr)
     return MockLLM(hallucinate=hallucinate)

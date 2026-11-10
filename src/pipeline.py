@@ -40,6 +40,10 @@ def _norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().lower()
 
 
+def _contains(haystack: str, needle: str) -> bool:
+    return re.search(r"(?<!\w)" + re.escape(needle) + r"(?!\w)", haystack) is not None
+
+
 def _sections(profile: CandidateProfile):
     return [profile.education, profile.experience, profile.skills,
             profile.projects, profile.certifications]
@@ -51,7 +55,7 @@ def grounding_check(profile: CandidateProfile, cv_text: str, flags: list[str]):
         for item in section:
             if item.evidence is None:
                 item.confidence = "low"
-            elif _norm(item.evidence) not in haystack:
+            elif not _contains(haystack, _norm(item.evidence)):
                 item.confidence, bad = "low", bad + 1
     if bad:
         flags.append(f"ungrounded_evidence:{bad}")
@@ -89,7 +93,7 @@ def recommend(profile: CandidateProfile, rubric: dict, flags: list[str]) -> Reco
             missing.append(crit["id"])
 
     ratio = len(matched) / len(rubric["must_have"])
-    heavy = {"empty_or_unreadable_text", "parse_failed"}
+    heavy = {"empty_or_unreadable_text", "parse_failed", "llm_call_failed"}
     if heavy & set(flags) or ratio < 0.5:
         label = "needs_clarification"
     elif ratio == 1 and not flags:
@@ -98,6 +102,9 @@ def recommend(profile: CandidateProfile, rubric: dict, flags: list[str]) -> Reco
         label = "standard_review"   # flag apa pun menahan label di level ini
 
     caveats = list(BASE_CAVEATS)
+    if "llm_call_failed" in flags:
+        caveats.append("Ekstraksi LLM gagal (masalah layanan, bukan isi CV). Hasil ini bukan penilaian atas CV; coba ulang atau review manual.")
+        missing = []   # jangan tuduh kriteria 'belum terbukti' karena kegagalan teknis
     if missing:
         caveats.append(f"Kriteria belum terbukti dari CV: {', '.join(missing)}.")
     if "possible_prompt_injection" in flags:
@@ -120,6 +127,8 @@ def run(cv_text: str, rubric: dict, llm=None) -> dict:
                 profile = CandidateProfile.model_validate(llm.extract(text))
             except ValidationError:
                 flags.append("parse_failed")
+        if "llm_call_failed" in profile.extraction_notes:
+            flags.append("llm_call_failed")
         grounding_check(profile, text, flags)
         consistency_checks(profile, flags)
     rec = recommend(profile, rubric, flags)

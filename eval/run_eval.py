@@ -27,7 +27,7 @@ def grounded_rate(result: dict, masked_text: str) -> float:
         for item in result["profile"][section]:
             if item.get("evidence"):
                 total += 1
-                ok += norm(item["evidence"]) in hay
+                ok += re.search(r"(?<!\w)" + re.escape(norm(item["evidence"])) + r"(?!\w)", hay) is not None
     return ok / total if total else 1.0
 
 
