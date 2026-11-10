@@ -13,7 +13,7 @@ PII = [
 INJECTION = [re.compile(p, re.I) for p in [
     r"ignore (all )?(previous|prior) instructions",
     r"abaikan (semua )?instruksi",
-    r"(nilai|score|rate).{0,25}(10/10|100)",
+    r"\b(nilai|score|rate)\b.{0,25}(10/10|100)",
     r"recommend this candidate",
     r"system prompt",
 ]]
