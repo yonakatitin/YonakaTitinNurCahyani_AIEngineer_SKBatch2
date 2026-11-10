@@ -1,0 +1,8 @@
+{
+  "expected_label": "needs_clarification",
+  "skills": [],
+  "n_experience": 1,
+  "gpa": null,
+  "must_flags": [],
+  "forbidden_flags": ["possible_prompt_injection", "ungrounded_evidence"]
+}

@@ -1,0 +1,8 @@
+{
+  "expected_label": "prioritize_review",
+  "skills": ["python", "sql", "fastapi", "pydantic", "docker", "git", "rag", "llm"],
+  "n_experience": 1,
+  "gpa": 3.7,
+  "must_flags": [],
+  "forbidden_flags": ["possible_prompt_injection", "ungrounded_evidence"]
+}

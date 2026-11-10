@@ -1,0 +1,9 @@
+{
+  "version": "v1-mock",
+  "role": "AI Engineer Intern (mock rubric)",
+  "must_have": [
+    {"id": "python", "keywords": ["python"]},
+    {"id": "llm_or_rag", "keywords": ["llm", "rag"]},
+    {"id": "structured_output_or_api", "keywords": ["fastapi", "pydantic"]}
+  ]
+}

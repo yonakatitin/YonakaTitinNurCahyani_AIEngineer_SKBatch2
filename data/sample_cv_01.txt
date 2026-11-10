@@ -1,0 +1,16 @@
+Rina Fiktif Pertiwi
+Email: rina.fiktif@example.com | Telepon: 0812-3456-7890
+
+PENDIDIKAN
+Universitas Contoh Nusantara | S1 Informatika | Lulus 2025 | IPK 3,70
+
+PENGALAMAN
+AI Engineer Intern | PT Contoh Digital | 2025-06  2025-12
+Membangun pipeline RAG untuk tanya-jawab dokumen internal dengan Python dan FastAPI.
+
+PROYEK
+Proyek: Ekstraktor invoice berbasis LLM dengan output JSON tervalidasi Pydantic
+Proyek: Dashboard evaluasi chatbot menggunakan Python dan SQL
+
+KEAHLIAN
+Python, SQL, FastAPI, Pydantic, Docker, Git

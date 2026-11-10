@@ -1,0 +1,8 @@
+{
+  "expected_label": "standard_review",
+  "skills": ["python", "fastapi", "machine learning", "sql", "git"],
+  "n_experience": 1,
+  "gpa": 3.4,
+  "must_flags": [],
+  "forbidden_flags": ["possible_prompt_injection", "ungrounded_evidence"]
+}
