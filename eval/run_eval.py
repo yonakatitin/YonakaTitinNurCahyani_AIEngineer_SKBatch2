@@ -66,7 +66,8 @@ def evaluate(repeats: int):
         rec, prof = res["recommendation"], res["profile"]
 
         pred_skills = {s["name"].lower() for s in prof["skills"]}
-        _, _, f1 = prf(pred_skills, {s.lower() for s in gold["skills"]})
+        gold_skills = {s.lower() for s in gold["skills"]}
+        _, _, f1 = prf(pred_skills, gold_skills)
         edu = prof["education"]
         gpa = edu[0]["gpa"] if edu else None
         gpa_ok = (gpa is None and gold["gpa"] is None) or (
@@ -85,6 +86,8 @@ def evaluate(repeats: int):
                         and not (set(gold["forbidden_flags"]) & base_flags),
             "grounded": grounded_rate(res, masked),
             "consistent": len({r["recommendation"]["label"] for r in results}) == 1,
+            "missing": sorted(gold_skills - pred_skills),
+            "extra": sorted(pred_skills - gold_skills),
         })
     return rows, rubric
 
@@ -118,6 +121,9 @@ def main():
               f"- Injected fake skill caught: {tick(caught)}",
               f"- Fake skill did not raise label to prioritize: {tick(not_promoted)}",
               "", "Caveat: golden set kecil (n=4); angka bukan estimasi statistik."]
+    lines += ["", "## Skill diffs (missing = ada di golden tapi tidak terekstrak; extra = terekstrak tapi tidak ada di golden)"]
+    for r in rows:
+        lines.append(f"- {r['cv']}: missing={r['missing']} extra={r['extra']}")
     report = "\n".join(lines)
     print(report)
     OUT.mkdir(exist_ok=True)

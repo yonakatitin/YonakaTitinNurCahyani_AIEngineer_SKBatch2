@@ -1,6 +1,6 @@
 {
   "expected_label": "needs_clarification",
-  "skills": [],
+  "skills": ["microsoft excel", "komunikasi", "kerja tim"],
   "n_experience": 1,
   "gpa": null,
   "must_flags": [],
