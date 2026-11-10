@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 import re
+import sys
 from pathlib import Path
 from statistics import mean
 
@@ -62,6 +63,9 @@ def evaluate(repeats: int):
         masked, _ = sanitize(cv)
 
         results = [run(cv, rubric, llm=get_llm()) for _ in range(repeats)]
+        if any("llm_call_failed" in r["recommendation"]["flags"] for r in results):
+            rows.append({"cv": cv_path.stem, "failed": True})
+            continue
         res = results[0]
         rec, prof = res["recommendation"], res["profile"]
 
@@ -100,10 +104,16 @@ def main():
     os.environ["LLM_MODE"] = args.mode
 
     rows, rubric = evaluate(args.repeats)
+    failed = [r["cv"] for r in rows if r.get("failed")]
+    rows = [r for r in rows if not r.get("failed")]
+    if not rows:
+        print("Semua panggilan LLM gagal; tidak ada laporan.", file=sys.stderr)
+        return
     caught, not_promoted = hallucination_test(rubric)
 
     tick = lambda b: "ok" if b else "FAIL"
-    lines = [f"# Eval report (mode={args.mode}, repeats={args.repeats}, n={len(rows)})", "",
+    model = os.getenv("LLM_MODEL", "-") if args.mode == "real" else "mock"
+    lines = [f"# Eval report (mode={args.mode}, model={model}, repeats={args.repeats}, n={len(rows)})", "",
              "| CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent |",
              "|---|---|---|---|---|---|---|---|"]
     for r in rows:
@@ -127,7 +137,10 @@ def main():
     report = "\n".join(lines)
     print(report)
     OUT.mkdir(exist_ok=True)
-    (OUT / f"eval_report_{args.mode}.md").write_text(report, encoding="utf-8")
+    if failed:
+        print(f"\nPERINGATAN: LLM gagal untuk {failed}; laporan TIDAK disimpan. Jalankan ulang nanti.", file=sys.stderr)
+    else:
+        (OUT / f"eval_report_{args.mode}.md").write_text(report, encoding="utf-8")
 
 
 if __name__ == "__main__":

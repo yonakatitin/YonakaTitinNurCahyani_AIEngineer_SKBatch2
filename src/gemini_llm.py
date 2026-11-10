@@ -84,7 +84,7 @@ class RealLLM:
                     time.sleep(5 * (2 ** attempt))   # 5s, 10s, 20s
                     continue
                 break
-            except (KeyError, IndexError, json.JSONDecodeError, urllib.error.URLError) as e:
+            except (KeyError, IndexError, json.JSONDecodeError, OSError) as e:
                 print(f"[gemini] {type(e).__name__} (attempt {attempt + 1}/{max_attempts})", file=sys.stderr)
                 if attempt < max_attempts - 1:
                     time.sleep(3)
