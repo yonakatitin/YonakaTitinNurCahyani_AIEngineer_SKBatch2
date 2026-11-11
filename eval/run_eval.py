@@ -51,10 +51,10 @@ def hallucination_test(rubric: dict):
     return caught, not_promoted
 
 
-def evaluate(repeats: int):
+def evaluate(repeats: int, prefix: str = "sample"):
     rubric = json.loads((DATA / "job_rubric.json").read_text(encoding="utf-8"))
     rows = []
-    for cv_path in sorted(DATA.glob("sample_cv_*.txt")):
+    for cv_path in sorted(DATA.glob(f"{prefix}_cv_*.txt")):
         gold_path = GOLD / f"{cv_path.stem}.json"
         if not gold_path.exists():
             continue
@@ -100,10 +100,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["mock", "real"], default="mock")
     ap.add_argument("--repeats", type=int, default=3)
+    ap.add_argument("--set", choices=["dev", "heldout"], default="dev")
     args = ap.parse_args()
     os.environ["LLM_MODE"] = args.mode
 
-    rows, rubric = evaluate(args.repeats)
+    prefix = "heldout" if args.set == "heldout" else "sample"
+    tag = "heldout_" if args.set == "heldout" else ""
+    rows, rubric = evaluate(args.repeats, prefix)
     failed = [r["cv"] for r in rows if r.get("failed")]
     rows = [r for r in rows if not r.get("failed")]
     if not rows:
@@ -114,7 +117,7 @@ def main():
     tick = lambda b: "ok" if b else "FAIL"
     model = os.getenv("LLM_MODEL", "-") if args.mode == "real" else "mock"
     prompt = os.getenv("PROMPT_VERSION", "v1") if args.mode == "real" else "-"
-    lines = [f"# Eval report (mode={args.mode}, model={model}, prompt={prompt}, repeats={args.repeats}, n={len(rows)})", "",
+    lines = [f"# Eval report (set={args.set}, mode={args.mode}, model={model}, prompt={prompt}, repeats={args.repeats}, n={len(rows)})", "",
              "| CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent |",
              "|---|---|---|---|---|---|---|---|"]
     for r in rows:
@@ -141,7 +144,7 @@ def main():
     if failed:
         print(f"\nPERINGATAN: LLM gagal untuk {failed}; laporan TIDAK disimpan. Jalankan ulang nanti.", file=sys.stderr)
     else:
-        name = f"eval_report_real_prompt_{prompt}.md" if args.mode == "real" else "eval_report_mock.md"
+        name = f"eval_report_{tag}real_prompt_{prompt}.md" if args.mode == "real" else f"eval_report_{tag}mock.md"
         (OUT / name).write_text(report, encoding="utf-8")
 
 

@@ -1,0 +1,8 @@
+{
+  "expected_label": "standard_review",
+  "skills": ["python", "fastapi", "pydantic", "postgresql", "docker", "rag"],
+  "n_experience": 1,
+  "gpa": 3.62,
+  "must_flags": ["inconsistent_dates"],
+  "forbidden_flags": ["possible_prompt_injection", "ungrounded_evidence"]
+}

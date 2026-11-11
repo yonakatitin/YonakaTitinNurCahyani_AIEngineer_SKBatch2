@@ -1,0 +1,8 @@
+{
+  "expected_label": "standard_review",
+  "skills": ["python", "r", "pandas", "pytorch", "streamlit", "git", "llm"],
+  "n_experience": 1,
+  "gpa": 3.55,
+  "must_flags": [],
+  "forbidden_flags": ["possible_prompt_injection", "ungrounded_evidence", "inconsistent_dates"]
+}

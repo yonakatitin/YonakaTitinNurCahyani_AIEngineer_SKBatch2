@@ -1,0 +1,11 @@
+Dimas Fiktif Prakoso
+
+PENDIDIKAN
+Universitas Contoh Barat | S1 Teknik Informatika | Lulus 2025 | IPK 3,62
+
+PENGALAMAN
+Backend Developer Intern | PT Contoh Solusi | 2024-09 - 2024-03
+Membangun layanan FastAPI dan pipeline RAG berbasis Python, serta memvalidasi output dengan Pydantic.
+
+KEAHLIAN
+Python, FastAPI, Pydantic, PostgreSQL, Docker
