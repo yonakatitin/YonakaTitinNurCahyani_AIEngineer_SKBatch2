@@ -30,6 +30,14 @@ Return ONE JSON object with exactly these keys:
 Use lowercase for skill names. Use empty lists when nothing is found.
 """
 
+PROMPT_V2_RULE = """
+Skill extraction rule: besides the skills section, also extract technologies, tools,
+methods, and domains explicitly named in experience and project descriptions
+(for example 'rag', 'llm', 'machine learning'). Use lowercase names. Only include terms
+that literally appear in the CV text, and use the exact line or sentence containing the term
+as evidence.
+"""
+
 
 def _load_env():
     env_path = Path(__file__).resolve().parent.parent / ".env"
@@ -61,7 +69,8 @@ class RealLLM:
 
     def extract(self, cv_text: str) -> dict:
         body = {
-            "systemInstruction": {"parts": [{"text": EXTRACTION_PROMPT + SCHEMA_HINT}]},
+            "systemInstruction": {"parts": [{"text": EXTRACTION_PROMPT + SCHEMA_HINT
+                                  + (PROMPT_V2_RULE if os.getenv("PROMPT_VERSION", "v1") == "v2" else "")}]},
             "contents": [{"role": "user",
                           "parts": [{"text": "<cv>\n" + cv_text + "\n</cv>"}]}],
             "generationConfig": {"temperature": 0, "responseMimeType": "application/json"},

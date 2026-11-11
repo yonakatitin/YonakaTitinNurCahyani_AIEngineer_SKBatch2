@@ -113,7 +113,8 @@ def main():
 
     tick = lambda b: "ok" if b else "FAIL"
     model = os.getenv("LLM_MODEL", "-") if args.mode == "real" else "mock"
-    lines = [f"# Eval report (mode={args.mode}, model={model}, repeats={args.repeats}, n={len(rows)})", "",
+    prompt = os.getenv("PROMPT_VERSION", "v1") if args.mode == "real" else "-"
+    lines = [f"# Eval report (mode={args.mode}, model={model}, prompt={prompt}, repeats={args.repeats}, n={len(rows)})", "",
              "| CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent |",
              "|---|---|---|---|---|---|---|---|"]
     for r in rows:
@@ -140,7 +141,8 @@ def main():
     if failed:
         print(f"\nPERINGATAN: LLM gagal untuk {failed}; laporan TIDAK disimpan. Jalankan ulang nanti.", file=sys.stderr)
     else:
-        (OUT / f"eval_report_{args.mode}.md").write_text(report, encoding="utf-8")
+        name = f"eval_report_real_prompt_{prompt}.md" if args.mode == "real" else "eval_report_mock.md"
+        (OUT / name).write_text(report, encoding="utf-8")
 
 
 if __name__ == "__main__":
