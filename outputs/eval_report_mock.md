@@ -1,4 +1,4 @@
-# Eval report (mode=mock, model=mock, repeats=3, n=4)
+# Eval report (mode=mock, model=mock, prompt=-, repeats=3, n=4)
 
 | CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent |
 |---|---|---|---|---|---|---|---|
