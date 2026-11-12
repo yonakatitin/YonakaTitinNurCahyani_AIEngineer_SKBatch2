@@ -90,16 +90,25 @@
     "matched_criteria": [
       {
         "criterion": "python",
+        "matched_keyword": "python",
+        "matched_in": "experience",
+        "snippet": "tuk tanya-jawab dokumen internal dengan python dan fastapi.",
         "evidence": "AI Engineer Intern | PT Contoh Digital | 2025-06 - 2025-12\nMembangun pipeline RAG untuk tanya-jawab dokumen internal dengan Python dan FastAPI.",
         "confidence": "high"
       },
       {
         "criterion": "llm_or_rag",
+        "matched_keyword": "rag",
+        "matched_in": "experience",
+        "snippet": "ai engineer intern membangun pipeline rag untuk tanya-jawab dokumen internal deng",
         "evidence": "AI Engineer Intern | PT Contoh Digital | 2025-06 - 2025-12\nMembangun pipeline RAG untuk tanya-jawab dokumen internal dengan Python dan FastAPI.",
         "confidence": "high"
       },
       {
         "criterion": "structured_output_or_api",
+        "matched_keyword": "fastapi",
+        "matched_in": "experience",
+        "snippet": "awab dokumen internal dengan python dan fastapi.",
         "evidence": "AI Engineer Intern | PT Contoh Digital | 2025-06 - 2025-12\nMembangun pipeline RAG untuk tanya-jawab dokumen internal dengan Python dan FastAPI.",
         "confidence": "high"
       }
