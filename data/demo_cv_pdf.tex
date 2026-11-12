@@ -1,0 +1,168 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[top=1.2cm, bottom=1.2cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\definecolor{linkblue}{RGB}{0, 102, 204}
+\hypersetup{colorlinks=true, urlcolor=linkblue, linkcolor=linkblue}
+
+\titleformat{\section}{
+    \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\titlerule\vspace{-4pt}]
+
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{2pt}
+  \noindent\textbf{#1} \hfill #2 \\
+  \noindent\textit{\small #3} \hfill \textit{\small #4}
+  \vspace{-4pt}
+}
+
+\newcommand{\resumePubHeading}[3]{
+  \vspace{2pt}
+  \noindent\textbf{#1} \\
+  \noindent\small{\textit{#2} \textemdash\ #3}
+  \vspace{-4pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \vspace{2pt}
+  \noindent\textbf{#1} \hfill \textit{\small #2}
+  \vspace{-4pt}
+}
+
+\setlist[itemize]{leftmargin=1.5em, topsep=1pt, itemsep=0pt, parsep=0pt, label=\textbullet}
+
+\pagestyle{empty}
+
+\begin{document}
+
+%---------- HEADER ----------
+\begin{center}
+    {\LARGE \textbf{Nadia Fiktif Anggraini}}\\[6pt]
+    nadia.fiktif@example.com
+    \hspace{2pt}\textbar\hspace{2pt}
+    +62 812-0000-1234
+    \hspace{2pt}\textbar\hspace{2pt}
+    \textcolor{linkblue}{\uline{\href{https://example.com/in/nadia-fiktif}{LinkedIn}}}
+    \hspace{2pt}\textbar\hspace{2pt}
+    \textcolor{linkblue}{\uline{\href{https://example.com/nadia-fiktif}{GitHub}}}
+\end{center}
+
+%---------- PROFESSIONAL SUMMARY ----------
+\section{Professional Summary}
+Fresh Graduate in Computer Science (GPA 3.68/4.00) and AI Engineer Intern building LLM-powered document assistants and workflow automation with n8n, FastAPI, and PostgreSQL. Hands-on with machine learning, RAG with vector databases (ChromaDB, pgvector), prompt engineering, RESTful APIs, Docker, and Git. Backed by one peer-reviewed publication and a university research grant. Eager to support the development of reliable, human-supervised AI products.
+
+%---------- EDUCATION ----------
+\section{Education}
+\resumeSubheading
+    {Universitas Contoh Nusantara}{Surakarta, Indonesia}
+    {Bachelor of Computer Science \textemdash\ GPA: 3.68 / 4.00}{Aug 2021 -- Jul 2025}
+\begin{itemize}
+  \resumeItem{\textbf{Thesis:} \textit{Sentiment Classification of Indonesian Product Reviews Using Transformer Embeddings and a CNN Classifier} --- Built an NLP pipeline on 8,000 product reviews and reduced class imbalance with a modified oversampling method, achieving macro F1-score 0.61.}
+\end{itemize}
+
+%---------- EXPERIENCE ----------
+\section{Experience}
+
+\resumeSubheading
+    {AI Engineer Intern}{Surakarta, Indonesia}
+    {PT Contoh Digital Nusantara}{Aug 2026 -- Present}
+\begin{itemize}
+  \resumeItem{Built a retrieval-augmented question-answering service over internal PDF documents using FastAPI, ChromaDB, and an LLM API, with page-level source citation in every answer.}
+  \resumeItem{Designed an n8n workflow that routes incoming chat messages to the relevant tool set before they reach the LLM agent, with a fallback path when the classifier is uncertain.}
+  \resumeItem{Validated all LLM outputs against a Pydantic schema and added an evaluation script that compares extracted fields with hand-labeled examples.}
+\end{itemize}
+
+\resumeSubheading
+    {Cloud Computing Bootcamp Graduate}{Remote}
+    {Contoh Tech Academy}{Jun 2025 -- Aug 2025}
+\begin{itemize}
+  \resumeItem{Provisioned and managed core AWS infrastructure (EC2, S3, RDS, VPC, IAM, CloudWatch) across hands-on labs simulating real-world deployment scenarios.}
+  \resumeItem{Applied Linux administration, networking fundamentals, and Python scripting to automate system provisioning.}
+\end{itemize}
+
+\resumeSubheading
+    {Web Programming Laboratory Teaching Assistant}{Surakarta, Indonesia}
+    {Universitas Contoh Nusantara}{Mar 2024 -- Jun 2024}
+\begin{itemize}
+  \resumeItem{Mentored approximately 50 students in full-stack web programming through structured, hands-on lab sessions.}
+\end{itemize}
+
+\resumeSubheading
+    {Machine Learning Intern}{Remote}
+    {Contoh Tech Academy (Independent Study Program)}{Aug 2023 -- Jan 2024}
+\begin{itemize}
+  \resumeItem{Completed a 600+ hour Machine Learning curriculum covering supervised and unsupervised learning and TensorFlow-based NLP, with a 88.50\% average academic score.}
+  \resumeItem{Built and deployed machine learning models using TensorFlow, NumPy, and scikit-learn, including model development, evaluation, and web deployment.}
+\end{itemize}
+
+%---------- TECHNICAL SKILLS ----------
+\section{Technical Skills}
+\begin{itemize}
+  \resumeItem{\textbf{LLM \& Generative AI:} Gemini, Llama (Ollama), Prompt Engineering, RAG, LangChain, ChromaDB, pgvector, Embeddings, Semantic Search}
+  \resumeItem{\textbf{Automation:} n8n (workflows, webhooks, HTTP/REST integration), LLM Agent Tool Routing}
+  \resumeItem{\textbf{Machine Learning:} TensorFlow, PyTorch, Scikit-learn, NLP, CNN, SVM, Model Evaluation (Accuracy, F1, ROC-AUC)}
+  \resumeItem{\textbf{Programming \& API:} Python (NumPy, pandas, FastAPI, Pydantic), JavaScript, SQL (PostgreSQL, MySQL), RESTful API}
+  \resumeItem{\textbf{Deployment \& Tools:} Docker, Git/GitHub, AWS (EC2, S3, RDS, VPC, IAM), Linux}
+\end{itemize}
+
+%---------- RESEARCH & PUBLICATIONS ----------
+\section{Research \& Publications}
+
+\resumePubHeading
+    {\textit{Hyperparameter Tuning for Commodity Price Prediction with Ridge Regression}}
+    {Jurnal Contoh Informatika}
+    {2025}
+\begin{itemize}
+  \resumeItem{Predicted commodity prices using Ridge Regression with grid search and MinMax scaling, achieving the best RMSE of 14.21.}
+\end{itemize}
+
+%---------- ACHIEVEMENTS ----------
+\section{Achievements}
+
+\resumeSubheading
+    {University Research Grant}{2025}
+    {Student Research Program \textemdash\ Universitas Contoh Nusantara}{}
+\begin{itemize}
+  \resumeItem{Awarded funding for a research proposal on a plant recommendation model based on SVM and metaheuristic optimization.}
+\end{itemize}
+
+%---------- PROJECTS ----------
+\section{Selected Projects}
+
+\resumeProjectHeading
+    {Multimodal RAG System for Document Q\&A}{2026}
+\begin{itemize}
+  \resumeItem{Built an end-to-end RAG system for querying long PDF reports with text, tables, and charts using a vision-capable LLM, LangChain, and ChromaDB.}
+  \resumeItem{Designed a FastAPI backend with \texttt{/ingest} and \texttt{/query} endpoints and overlap-aware text chunking.}
+\end{itemize}
+
+\resumeProjectHeading
+    {Spice Classification System}{2024}
+\begin{itemize}
+  \resumeItem{Compared Random Forest, Random Forest with grid search, and Random Forest with Particle Swarm Optimization on an image classification task for three similar-looking spices; the best model reached 88.40\% accuracy.}
+\end{itemize}
+
+%---------- CERTIFICATIONS ----------
+\section{Certifications}
+\begin{itemize}
+  \resumeItem{\textbf{TensorFlow Developer Certificate} \textemdash\ Example Certification Body (2024)}
+  \resumeItem{\textbf{Machine Learning Specialization} \textemdash\ Example Online Learning Platform (2023)}
+\end{itemize}
+
+\end{document}
