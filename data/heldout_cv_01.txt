@@ -1,0 +1,17 @@
+Aisha Fiktif Rahman
+Contact: aisha.fiktif@example.com
+
+Summary
+Recent graduate interested in applied language technology.
+
+Education
+B.Sc. in Statistics, Example Coastal University, graduated 2025, GPA 3.55.
+
+Work
+Research Assistant at Contoh Lab, from 2024-09 until 2025-05. Fine-tuned a small LLM for Indonesian text classification using Python and PyTorch, and wrote evaluation scripts with pandas.
+
+Projects
+Project: Sentiment dashboard for product reviews built with Python and Streamlit.
+
+Skills
+Python, R, pandas, PyTorch, Streamlit, Git

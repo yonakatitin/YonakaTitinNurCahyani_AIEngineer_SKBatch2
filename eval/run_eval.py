@@ -60,7 +60,10 @@ def evaluate(repeats: int, prefix: str = "sample"):
             continue
         gold = json.loads(gold_path.read_text(encoding="utf-8"))
         cv = cv_path.read_text(encoding="utf-8")
-        masked, _ = sanitize(cv)
+        masked, san_flags = sanitize(cv)
+        if "empty_or_unreadable_text" in san_flags:
+            raise SystemExit(f"Input tidak valid: {cv_path.name} kosong atau terlalu pendek "
+                             f"({len(cv.strip())} karakter). Periksa file sebelum evaluasi.")
 
         results = [run(cv, rubric, llm=get_llm()) for _ in range(repeats)]
         if any("llm_call_failed" in r["recommendation"]["flags"] for r in results):
@@ -92,6 +95,7 @@ def evaluate(repeats: int, prefix: str = "sample"):
             "consistent": len({r["recommendation"]["label"] for r in results}) == 1,
             "missing": sorted(gold_skills - pred_skills),
             "extra": sorted(pred_skills - gold_skills),
+            "raised": sorted(base_flags),
         })
     return rows, rubric
 
@@ -118,12 +122,13 @@ def main():
     model = os.getenv("LLM_MODEL", "-") if args.mode == "real" else "mock"
     prompt = os.getenv("PROMPT_VERSION", "v1") if args.mode == "real" else "-"
     lines = [f"# Eval report (set={args.set}, mode={args.mode}, model={model}, prompt={prompt}, repeats={args.repeats}, n={len(rows)})", "",
-             "| CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent |",
-             "|---|---|---|---|---|---|---|---|"]
+             "| CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent | raised |",
+             "|---|---|---|---|---|---|---|---|---|"]
     for r in rows:
         lines.append(f"| {r['cv']} | {r['expected']} / {r['actual']} ({tick(r['label_ok'])}) "
                      f"| {r['skill_f1']:.2f} | {tick(r['exp_ok'])} | {tick(r['gpa_ok'])} "
-                     f"| {tick(r['flags_ok'])} | {r['grounded']:.2f} | {tick(r['consistent'])} |")
+                     f"| {tick(r['flags_ok'])} | {r['grounded']:.2f} | {tick(r['consistent'])} "
+                     f"| {', '.join(r['raised']) or '-'} |")
     lines += ["", "## Summary",
               f"- Label accuracy: {mean(r['label_ok'] for r in rows):.2f}",
               f"- Mean skill F1: {mean(r['skill_f1'] for r in rows):.2f}",
