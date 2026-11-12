@@ -1,0 +1,219 @@
+{
+  "profile": {
+    "education": [
+      {
+        "evidence": "Universitas Contoh NusantaraSurakarta, Indonesia\nBachelor of Computer Science — GPA: 3.68 / 4.00 Aug 2021 – Jul 2025",
+        "confidence": "high",
+        "institution": "Universitas Contoh Nusantara",
+        "degree": "Bachelor of Computer Science",
+        "field_of_study": "Computer Science",
+        "end_year": 2025,
+        "gpa": 3.68
+      }
+    ],
+    "experience": [
+      {
+        "evidence": "AI Engineer InternSurakarta, Indonesia\nPT Contoh Digital Nusantara Aug 2026 – Present",
+        "confidence": "high",
+        "company": "PT Contoh Digital Nusantara",
+        "title": "AI Engineer Intern",
+        "start": "2026-08",
+        "end": "present",
+        "employment_type": "internship",
+        "summary": "Built a retrieval-augmented question-answering service over internal PDF documents using FastAPI, ChromaDB, and an LLM API, with page-level source citation in every answer."
+      },
+      {
+        "evidence": "Cloud Computing Bootcamp GraduateRemote\nContoh Tech Academy Jun 2025 – Aug 2025",
+        "confidence": "high",
+        "company": "Contoh Tech Academy",
+        "title": "Cloud Computing Bootcamp Graduate",
+        "start": "2025-06",
+        "end": "2025-08",
+        "employment_type": "internship",
+        "summary": "Provisioned and managed core AWS infrastructure (EC2, S3, RDS, VPC, IAM, CloudWatch) across hands-on labs simulating real-world deployment scenarios."
+      },
+      {
+        "evidence": "Web Programming Laboratory Teaching AssistantSurakarta, Indonesia\nUniversitas Contoh Nusantara Mar 2024 – Jun 2024",
+        "confidence": "high",
+        "company": "Universitas Contoh Nusantara",
+        "title": "Web Programming Laboratory Teaching Assistant",
+        "start": "2024-03",
+        "end": "2024-06",
+        "employment_type": "unknown",
+        "summary": "Mentored approximately 50 students in full-stack web programming through structured, hands-on lab sessions."
+      },
+      {
+        "evidence": "Machine Learning Intern Remote\nContoh Tech Academy (Independent Study Program) Aug 2023 – Jan 2024",
+        "confidence": "high",
+        "company": "Contoh Tech Academy",
+        "title": "Machine Learning Intern",
+        "start": "2023-08",
+        "end": "2024-01",
+        "employment_type": "internship",
+        "summary": "Completed a 600+ hour Machine Learning curriculum covering supervised and unsupervised learning and TensorFlow-based NLP, with a 88.50% average academic score."
+      }
+    ],
+    "skills": [
+      {
+        "evidence": "Python (NumPy, pandas, FastAPI, Pydantic)",
+        "confidence": "high",
+        "name": "python",
+        "category": "language"
+      },
+      {
+        "evidence": "JavaScript",
+        "confidence": "high",
+        "name": "javascript",
+        "category": "language"
+      },
+      {
+        "evidence": "SQL (PostgreSQL, MySQL)",
+        "confidence": "high",
+        "name": "sql",
+        "category": "language"
+      },
+      {
+        "evidence": "FastAPI",
+        "confidence": "high",
+        "name": "fastapi",
+        "category": "framework"
+      },
+      {
+        "evidence": "TensorFlow",
+        "confidence": "high",
+        "name": "tensorflow",
+        "category": "framework"
+      },
+      {
+        "evidence": "PyTorch",
+        "confidence": "high",
+        "name": "pytorch",
+        "category": "framework"
+      },
+      {
+        "evidence": "Scikit-learn",
+        "confidence": "high",
+        "name": "scikit-learn",
+        "category": "framework"
+      },
+      {
+        "evidence": "LangChain",
+        "confidence": "high",
+        "name": "langchain",
+        "category": "framework"
+      },
+      {
+        "evidence": "n8n (workflows, webhooks, HTTP/REST integration)",
+        "confidence": "high",
+        "name": "n8n",
+        "category": "tool"
+      },
+      {
+        "evidence": "Docker",
+        "confidence": "high",
+        "name": "docker",
+        "category": "tool"
+      },
+      {
+        "evidence": "Git/GitHub",
+        "confidence": "high",
+        "name": "git",
+        "category": "tool"
+      },
+      {
+        "evidence": "AWS (EC2, S3, RDS, VPC, IAM)",
+        "confidence": "high",
+        "name": "aws",
+        "category": "tool"
+      },
+      {
+        "evidence": "RAG",
+        "confidence": "high",
+        "name": "rag",
+        "category": "domain"
+      },
+      {
+        "evidence": "NLP",
+        "confidence": "high",
+        "name": "nlp",
+        "category": "domain"
+      }
+    ],
+    "projects": [
+      {
+        "evidence": "Multimodal RAG System for Document Q&A2026\n• Built an end-to-end RAG system for querying long PDF reports with text, tables, and charts using a vision-capable LLM, LangChain, and ChromaDB.",
+        "confidence": "high",
+        "name": "Multimodal RAG System for Document Q&A",
+        "description": "Built an end-to-end RAG system for querying long PDF reports with text, tables, and charts using a vision-capable LLM, LangChain, and ChromaDB.",
+        "tech": [
+          "LLM",
+          "LangChain",
+          "ChromaDB",
+          "FastAPI"
+        ]
+      },
+      {
+        "evidence": "Spice Classification System 2024\n• Compared Random Forest, Random Forest with grid search, and Random Forest with Particle Swarm Optimization on an image classification task for three similar-looking spices; the best model reached 88.40% accuracy.",
+        "confidence": "high",
+        "name": "Spice Classification System",
+        "description": "Compared Random Forest, Random Forest with grid search, and Random Forest with Particle Swarm Optimization on an image classification task for three similar-looking spices; the best model reached 88.40% accuracy.",
+        "tech": [
+          "Random Forest"
+        ]
+      }
+    ],
+    "certifications": [
+      {
+        "evidence": "TensorFlow Developer Certificate— Example Certification Body (2024)",
+        "confidence": "high"
+      },
+      {
+        "evidence": "Machine Learning Specialization— Example Online Learning Platform (2023)",
+        "confidence": "high"
+      }
+    ],
+    "extraction_notes": [
+      "The CV lists an AI Engineer Intern role starting in Aug 2026, which is in the future relative to the current date, but extracted as stated."
+    ]
+  },
+  "recommendation": {
+    "label": "prioritize_review",
+    "matched_criteria": [
+      {
+        "criterion": "python",
+        "matched_keyword": "python",
+        "matched_in": "skill",
+        "snippet": "python",
+        "evidence": "Python (NumPy, pandas, FastAPI, Pydantic)",
+        "confidence": "high"
+      },
+      {
+        "criterion": "llm_or_rag",
+        "matched_keyword": "llm",
+        "matched_in": "experience",
+        "snippet": "cuments using fastapi, chromadb, and an llm api, with page-level source citation in",
+        "evidence": "AI Engineer InternSurakarta, Indonesia\nPT Contoh Digital Nusantara Aug 2026 – Present",
+        "confidence": "high"
+      },
+      {
+        "criterion": "structured_output_or_api",
+        "matched_keyword": "fastapi",
+        "matched_in": "experience",
+        "snippet": "rvice over internal pdf documents using fastapi, chromadb, and an llm api, with page-le",
+        "evidence": "AI Engineer InternSurakarta, Indonesia\nPT Contoh Digital Nusantara Aug 2026 – Present",
+        "confidence": "high"
+      }
+    ],
+    "missing_or_unclear": [],
+    "caveats": [
+      "Rekomendasi hanya berdasar isi CV, bukan penilaian kualitas kerja sebenarnya.",
+      "Skill yang tertulis belum tentu menunjukkan kedalaman pengalaman.",
+      "Format CV tidak standar dapat menurunkan akurasi ekstraksi.",
+      "Keputusan akhir wajib oleh reviewer manusia.",
+      "Catatan ekstraksi dari model (belum diverifikasi, perlu dicek reviewer): The CV lists an AI Engineer Intern role starting in Aug 2026, which is in the future relative to the current date, but extracted as stated."
+    ],
+    "flags": [],
+    "requires_human_decision": true,
+    "rubric_version": "v1-mock"
+  }
+}
