@@ -83,12 +83,24 @@ def recommend(profile: CandidateProfile, rubric: dict, flags: list[str]) -> Reco
                if i.confidence != "low" and i.evidence]
     matched, missing = [], []
     for crit in rubric["must_have"]:
-        hit = next((i for i in trusted
-                    if any(re.search(rf"\b{re.escape(k)}\b", _item_text(i))
-                           for k in crit["keywords"])), None)
+        hit, kw, text = None, None, ""
+        for item in trusted:
+            t = _item_text(item)
+            kw_found = next((k for k in crit["keywords"]
+                             if re.search(rf"\b{re.escape(k)}\b", t)), None)
+            if kw_found:
+                hit, kw, text = item, kw_found, t
+                break
         if hit:
-            matched.append({"criterion": crit["id"], "evidence": hit.evidence,
-                            "confidence": hit.confidence})
+            m = re.search(rf"\b{re.escape(kw)}\b", text)
+            matched.append({
+                "criterion": crit["id"],
+                "matched_keyword": kw,
+                "matched_in": type(hit).__name__.lower(),   # skill / experience / project
+                "snippet": text[max(0, m.start() - 40): m.end() + 40],
+                "evidence": hit.evidence,
+                "confidence": hit.confidence,
+            })
         else:
             missing.append(crit["id"])
 
@@ -105,6 +117,10 @@ def recommend(profile: CandidateProfile, rubric: dict, flags: list[str]) -> Reco
     if "llm_call_failed" in flags:
         caveats.append("Ekstraksi LLM gagal (masalah layanan, bukan isi CV). Hasil ini bukan penilaian atas CV; coba ulang atau review manual.")
         missing = []   # jangan tuduh kriteria 'belum terbukti' karena kegagalan teknis
+    notes = [n for n in profile.extraction_notes if n != "llm_call_failed"]
+    if notes:
+        caveats.append("Catatan ekstraksi dari model (belum diverifikasi, perlu dicek reviewer): "
+                       + " | ".join(n[:200] for n in notes[:3]))
     if missing:
         caveats.append(f"Kriteria belum terbukti dari CV: {', '.join(missing)}.")
     if "possible_prompt_injection" in flags:
