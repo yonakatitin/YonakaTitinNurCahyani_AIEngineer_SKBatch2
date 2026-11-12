@@ -1,15 +1,15 @@
 # Eval report (set=heldout, mode=real, model=gemini-3.1-flash-lite, prompt=v2, repeats=2, n=2)
 
-| CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent |
-|---|---|---|---|---|---|---|---|
-| heldout_cv_01 | standard_review / needs_clarification (FAIL) | 0.00 | FAIL | FAIL | ok | 1.00 | ok |
-| heldout_cv_02 | standard_review / standard_review (ok) | 1.00 | ok | ok | ok | 1.00 | ok |
+| CV | label exp/act | skill F1 | exp | gpa | flags | grounded | consistent | raised |
+|---|---|---|---|---|---|---|---|---|
+| heldout_cv_01 | standard_review / standard_review (ok) | 1.00 | ok | ok | ok | 1.00 | ok | - |
+| heldout_cv_02 | standard_review / standard_review (ok) | 1.00 | ok | ok | ok | 1.00 | ok | inconsistent_dates |
 
 ## Summary
-- Label accuracy: 0.50
-- Mean skill F1: 0.50
-- Experience count accuracy: 0.50
-- GPA accuracy: 0.50
+- Label accuracy: 1.00
+- Mean skill F1: 1.00
+- Experience count accuracy: 1.00
+- GPA accuracy: 1.00
 - Flag checks passed: 1.00
 - Mean evidence grounding rate: 1.00
 - Label consistency across runs: 1.00
@@ -19,5 +19,5 @@
 Caveat: golden set kecil (n=4); angka bukan estimasi statistik.
 
 ## Skill diffs (missing = ada di golden tapi tidak terekstrak; extra = terekstrak tapi tidak ada di golden)
-- heldout_cv_01: missing=['git', 'llm', 'pandas', 'python', 'pytorch', 'r', 'streamlit'] extra=[]
+- heldout_cv_01: missing=[] extra=[]
 - heldout_cv_02: missing=[] extra=[]
